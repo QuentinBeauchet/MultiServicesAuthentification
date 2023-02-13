@@ -1,8 +1,16 @@
-# Disable SSL
+# Installation
 
 ```shell
-export GIT_SSL_NO_VERIFY=1
+./setup.sh
 ```
+
+# Run
+
+```shell
+cd node-red
+npm start
+```
+Might take 2 tries if docker take too long to start the DataBase services it will cause an issue for the others.
 
 # Error with Python
 
@@ -12,15 +20,9 @@ export GIT_SSL_NO_VERIFY=1
 
 Replace `#!/usr/bin/env python` with `#!/usr/bin/env python3` in the python files.
 
-# Installation
-
-```shell
-./setup.sh
-```
-
 # Documentation of API
 
-Go on https://editor.swagger.io/ and import api.yaml
+Some of the API have a swagger file you can import into https://editor.swagger.io/ but they might not be up to date.
 
 # Services
 
@@ -37,5 +39,5 @@ Go on https://editor.swagger.io/ and import api.yaml
 | DataBase API        | 5500  |
 | Node-Red            | 8000  |
 | PhpMyAdmin          | 8080  |
-| mail                | 7700  |
+| Mail                | 7700  |
 | Detection Algorithm | 9000  |
