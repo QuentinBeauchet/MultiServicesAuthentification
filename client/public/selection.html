@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="http://localhost:8000/api/selection" method="post">
+      <div>
+        <input type="number" id="Course" name="Course" />
+        <label for="Course">Please select the course id</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="Bluetooth" name="Bluetooth" />
+        <label for="Bluetooth">Bluetooth</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="QR" name="QR" />
+        <label for="QR">QR Code</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="Wifi" name="Wifi" />
+        <label for="Wifi">Wifi</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="Camera" name="Camera" />
+        <label for="Camera">Camera</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="RFID" name="RFID" />
+        <label for="RFID">RFID</label>
+      </div>
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

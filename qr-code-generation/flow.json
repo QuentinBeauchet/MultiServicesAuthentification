@@ -1,0 +1,146 @@
+[
+    {
+        "id": "a7533f2ea6d37eb6",
+        "type": "tab",
+        "label": "QRCode Generation API",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9247f4f1fb165720",
+        "type": "mqtt in",
+        "z": "a7533f2ea6d37eb6",
+        "name": "",
+        "topic": "qrcode",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "a437ba44f724ac16",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "7c50597569315d0c"
+            ]
+        ]
+    },
+    {
+        "id": "9383932daee451eb",
+        "type": "qrcode-generator",
+        "z": "a7533f2ea6d37eb6",
+        "name": "",
+        "qrtype": "text2qr",
+        "text2qrText": "",
+        "ssid": "",
+        "hiddenssid": false,
+        "wifitype": "",
+        "phonenum": "",
+        "smsphonenum": "",
+        "smstext": "",
+        "mailto": "",
+        "mailsubject": "",
+        "mailbody": "",
+        "latitude": "",
+        "longitude": "",
+        "colorlight": "#ffffff",
+        "colordark": "#000000",
+        "printstatus": false,
+        "x": 670,
+        "y": 300,
+        "wires": [
+            [
+                "b0ac9ae0f793ce7b"
+            ]
+        ]
+    },
+    {
+        "id": "7c50597569315d0c",
+        "type": "function",
+        "z": "a7533f2ea6d37eb6",
+        "name": "function 1",
+        "func": "msg.qrcodeinput = msg.payload\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 300,
+        "wires": [
+            [
+                "9383932daee451eb"
+            ]
+        ]
+    },
+    {
+        "id": "b0ac9ae0f793ce7b",
+        "type": "ui_template",
+        "z": "a7533f2ea6d37eb6",
+        "group": "833179333e419a34",
+        "name": "",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "format": "<div >\n    <img width=\"300px\" src=\"{{msg.payload}}\">\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 900,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a437ba44f724ac16",
+        "type": "mqtt-broker",
+        "name": "mosquitto",
+        "broker": "http://test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "833179333e419a34",
+        "type": "ui_group",
+        "name": "QRCode",
+        "tab": "8376804ab45cb549",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8376804ab45cb549",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

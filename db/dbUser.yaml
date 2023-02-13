@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: User API from Bus database
+  description: The User table from the Bus database
+
+servers:
+  - url: http://localhost:5500
+
+paths:
+  /users:
+    get:
+      description: Get all the users in the data base
+      responses:
+        "200":
+          description: Users are returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+
+  /user/add:
+    post:
+      description: Add a user to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddUser"
+      responses:
+        "200":
+          description: The user is added
+
+  /user/add/camera_id:
+    post:
+      description: Add a camera_id for a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddCameraId"
+      responses:
+        "200":
+          description: Add camera_id for a user
+
+
+
+
+components:
+  schemas:
+    AddUser:
+      type: object
+      required:
+        - login
+      properties:
+        id:
+          type: string
+
+    AddCameraId:
+      type: object
+      required:
+        - login
+      properties:
+        id:
+          type: string
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+
+
+
+

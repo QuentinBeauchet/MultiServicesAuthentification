@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Node-Red API
+  description: A simple API in Node-Red
+
+servers:
+  - url: http://localhost:8000
+
+paths:
+  /red:
+    get:
+      description: Returns a the Node-Red Client to create new flows
+      responses:
+        "200":
+          description: The Node-Red service is running
+
+  /api/connection:
+    get:
+      description: Returns a html form allowing the user to enter his credentials
+      responses:
+        "200":
+          description: The Client service is running
+    post:
+      description: Verify if the user credentials correspond the what's inside HyperPlanning
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Credentials"
+      responses:
+        "200":
+          $ref: "#/components/responses/User"
+
+  /api/selection:
+    post:
+      description: Start the verification of the students by calling the services provided
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Services"
+      responses:
+        "200":
+          description: TODO
+
+components:
+  schemas:
+    Credentials:
+      type: object
+      required:
+        - login
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+    User:
+      type: object
+      properties:
+        message:
+          type: string
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        uuid:
+          type: integer
+        picture:
+          type: string
+        type:
+          type: string
+
+    Services:
+      type: object
+      properties:
+        Bluetooth:
+          $ref: "#/components/schemas/ServiceStatus"
+        QR:
+          $ref: "#/components/schemas/ServiceStatus"
+    ServiceStatus:
+      type: string
+      enum: [on, off]
+
+  responses:
+    User:
+      description: The User if found
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/User"

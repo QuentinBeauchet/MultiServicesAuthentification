@@ -1,0 +1,6 @@
+.idea
+.vs_code
+.vs
+node_modules
+wifi/.env
+camera/.env

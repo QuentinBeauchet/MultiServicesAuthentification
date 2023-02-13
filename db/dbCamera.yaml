@@ -1,0 +1,120 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Camera API from Bus database
+  description: The Camera table from the Bus database
+
+servers:
+  - url: http://localhost:5500
+
+paths:
+  /camera/users:
+    get:
+      description: Get all the users scanned by the camera in the data base
+      responses:
+        "200":
+          description: Users scanned are returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Scan"
+
+
+  /camera/{id}:
+    get:
+      description: Get the scan history of an user by his id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User id to get
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: History is returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Times"
+
+  /camera/{from}/{to}:
+    get:
+      description: Get all users scanned in the interval of time
+      parameters:
+        - name: from
+          in: path
+          required: true
+          description: min time
+          schema:
+            type: integer
+            format: int64
+        - name: to
+          in: path
+          required: true
+          description: max time
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Return users scanned in this interval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+
+
+  /camera/add:
+    post:
+      description: Add presence of a user to the database of the camera
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddUser"
+      responses:
+        "200":
+          description: The presence is added
+
+
+
+
+components:
+  schemas:
+    AddUser:
+      type: object
+      required:
+        - login
+      properties:
+        camera_id:
+          type: number
+
+
+    Scan:
+      type: object
+      properties:
+        camera_id:
+          type: number
+        time:
+          type: number
+
+
+    Times:
+      type: array
+      items:
+        type: number
+
+    Users:
+      type: array
+      items:
+        type: object
+        properties:
+          camera_id:
+            type: number
+          time:
+            type: number
+
+

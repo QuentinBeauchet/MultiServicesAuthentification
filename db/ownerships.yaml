@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API of the Associative table
+  description: Associative table between the table User and the table Bluetooth
+
+servers:
+  - url: http://localhost:5500
+
+paths:
+  /ownerships:
+    get:
+      description: Get all users with their devices
+      responses:
+        "200":
+          description: Users and their devices are returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsersDevices"
+
+  /ownerships/{id}:
+    get:
+      description: Get all users with their devices
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the User
+          schema:
+            type: string
+      responses:
+        "200":
+          description: All the devices of a user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Devices"
+
+  /ownerships/user/{address}:
+    get:
+      description: Get the user who has a device with this address
+      parameters:
+        - name: address
+          in: path
+          required: true
+          description: Mac address of a device
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The user is return
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+
+  /ownerships/add:
+    post:
+      description: Add a user with a device
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddUserDevice"
+      responses:
+        "200":
+          description: The user with the device is added
+
+
+components:
+  schemas:
+    Devices:
+      type: object
+      required:
+        - id
+      properties:
+        address:
+          type: string
+
+
+    UsersDevices:
+      type: object
+      properties:
+        id:
+          type: string
+        address:
+          type: string
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+
+    AddUserDevice:
+      type: object
+      required:
+        - id
+        - address
+      properties:
+        id:
+          type: string
+        address:
+          type: string
+
+
+
+

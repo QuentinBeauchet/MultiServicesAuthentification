@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Adding the user MAC and Bluetooth addresses</h1>
+    <form action="http://localhost:8000/api/db/owner/addresses" method="post" id="form">
+      <div>
+        <label for="uuid">UUID</label>
+        <input name="uuid" id="uuid" required />
+      </div>
+      <div>
+        <label for="addresses">Addresses comma separated</label>
+        <input
+          id="addresses"
+          name="addresses"
+          pattern="([0-9a-fA-F]{2}[\.:-]){5}[0-9a-fA-F]{2}(,(([0-9a-fA-F]{2}[\.:-]){5}[0-9a-fA-F]{2}))*"
+        />
+      </div>
+      <input type="submit" value="Submit" id="btn" />
+    </form>
+
+    <h1>Adding the user cards RFID</h1>
+    <form action="http://localhost:8000/api/db/owner/rfid" method="post" id="form">
+      <div>
+        <label for="uuid">UUID</label>
+        <input name="uuid" id="uuid" required />
+      </div>
+      <div>
+        <label for="rfids">RFIDS comma separated</label>
+        <input id="rfids" name="rfids" pattern="[0-9a-fA-F]+(,[0-9a-fA-F]+)*" />
+      </div>
+      <input type="submit" value="Submit" id="btn" />
+    </form>
+  </body>
+
+  <script></script>
+</html>
